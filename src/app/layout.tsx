@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: "Arione Dauis | Software Engineer & IT Consultant",
     template: "%s | Arione Dauis",
   },
-  description: "Portfolio of Arione Dauis, a versatile full-stack software engineer & IT consultant. Specializing in Next.js, Node.js, automated AI workflows, and cloud systems.",
+  description: "Let's Connect and Build your Ideas",
   keywords: [
     "Arione Dauis",
     "Arione John Dauis",
@@ -37,25 +37,16 @@ export const metadata: Metadata = {
   creator: "Arione Dauis",
   openGraph: {
     title: "Arione Dauis | Software Engineer & IT Consultant",
-    description: "Versatile software engineer and IT consultant with 3+ years of experience building reliable web systems, developer tools, and automated AI workflows. Cum Laude Computer Science Graduate.",
+    description: "Let's Connect and Build your Ideas",
     url: "https://arione.dev",
     siteName: "Arione Dauis Portfolio",
-    images: [
-      {
-        url: "/images/og/home.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Arione Dauis Portfolio Preview",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Arione Dauis | Software Engineer & IT Consultant",
-    description: "Versatile software engineer and IT consultant with 3+ years of experience building reliable web systems, developer tools, and automated AI workflows.",
-    images: ["/images/og/home.jpg"],
+    description: "Let's Connect and Build your Ideas",
   },
   robots: {
     index: true,
