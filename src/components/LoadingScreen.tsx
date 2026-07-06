@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -56,7 +57,16 @@ export default function LoadingScreen() {
       <div className="loader-content">
         <div className="loader-spinner-container">
           <div className="loader-logo-ring" />
-          <div className="loader-monogram">AD</div>
+          <div className="loader-monogram" style={{ position: "absolute", width: "52px", height: "52px", overflow: "hidden", borderRadius: "50%" }}>
+            <Image
+              src="/images/logo.png"
+              alt="Logo"
+              fill
+              sizes="52px"
+              style={{ objectFit: "cover" }}
+              priority
+            />
+          </div>
         </div>
         <div className="loader-bar-track">
           <div className="loader-bar-fill" />
