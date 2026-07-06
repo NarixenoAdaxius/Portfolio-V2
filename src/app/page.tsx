@@ -339,6 +339,7 @@ export default function Home() {
                     src="/images/certifications/Backend Head Certification.png"
                     alt="Backend Head Certification"
                     fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
                     style={{ objectFit: "contain" }}
                   />
                 </div>
@@ -354,6 +355,7 @@ export default function Home() {
                     src="/images/certifications/Cybersecurity for Everyone DICT.png"
                     alt="Cybersecurity for Everyone"
                     fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
                     style={{ objectFit: "contain" }}
                   />
                 </div>
@@ -369,6 +371,7 @@ export default function Home() {
                     src="/images/certifications/Cyber Awareness Challenge 2024.png"
                     alt="Cyber Awareness Challenge"
                     fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
                     style={{ objectFit: "contain" }}
                   />
                 </div>
@@ -384,6 +387,7 @@ export default function Home() {
                     src="/images/certifications/Packet hacks Finalist Certificate of Participation.png"
                     alt="Packet Hacks Finalist"
                     fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
                     style={{ objectFit: "contain" }}
                   />
                 </div>
@@ -716,6 +720,7 @@ export default function Home() {
                         src={selectedProject.img}
                         alt={selectedProject.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         style={{ objectFit: "contain" }}
                       />
                     </div>
