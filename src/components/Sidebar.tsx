@@ -3,17 +3,18 @@
 import Image from "next/image";
 import { useState } from "react";
 import {
-  Home, User, FileText, Briefcase, Code, Mail, Menu, X, Download,
+  Home, User, FileText, Briefcase, Code, Mail, Menu, X, Download, MessageSquare, Phone,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const navItems = [
-  { href: "#hero",       label: "Home",       icon: <Home       size={16} /> },
-  { href: "#about",      label: "About",      icon: <User       size={16} /> },
-  { href: "#resume",     label: "Resume",     icon: <FileText   size={16} /> },
-  { href: "#portfolio",  label: "Portfolio",  icon: <Briefcase  size={16} /> },
-  { href: "#skills",     label: "Skills",     icon: <Code       size={16} /> },
-  { href: "#contact",    label: "Contact",    icon: <Mail       size={16} /> },
+  { href: "#hero",         label: "Home",         icon: <Home         size={16} /> },
+  { href: "#about",        label: "About",        icon: <User         size={16} /> },
+  { href: "#resume",       label: "Resume",       icon: <FileText     size={16} /> },
+  { href: "#portfolio",    label: "Portfolio",    icon: <Briefcase    size={16} /> },
+  { href: "#skills",       label: "Skills",       icon: <Code         size={16} /> },
+  { href: "#testimonials", label: "Testimonials", icon: <MessageSquare size={16} /> },
+  { href: "#contact",      label: "Contact",      icon: <Mail         size={16} /> },
 ];
 
 export default function Sidebar() {
@@ -49,10 +50,10 @@ export default function Sidebar() {
           </div>
 
           <div className="sidebar-name">Arione Dauis</div>
-          <div className="sidebar-title-line">Full Stack Engineer</div>
+          <div className="sidebar-title-line">Software Engineer &amp; IT Consultant</div>
 
           {/* Social icons */}
-          <div className="sidebar-socials">
+          <div className="sidebar-socials" style={{ marginBottom: "1rem" }}>
             <a
               href="https://github.com/NarixenoAdaxius"
               target="_blank"
@@ -85,7 +86,7 @@ export default function Sidebar() {
               className="sidebar-social-btn"
               aria-label="WhatsApp"
             >
-              <Mail size={14} />
+              <Phone size={14} />
             </a>
           </div>
         </div>
@@ -114,10 +115,10 @@ export default function Sidebar() {
                 alignItems: "center",
                 gap: "0.5rem",
                 padding: "0.6rem 1rem",
-                background: "rgba(245,158,11,0.12)",
-                border: "1px solid rgba(245,158,11,0.3)",
+                background: "var(--brand-dim)",
+                border: "1px solid var(--brand)",
                 borderRadius: "4px",
-                color: "#f59e0b",
+                color: "var(--brand)",
                 fontSize: "0.85rem",
                 fontWeight: 600,
                 transition: "all 0.28s ease",

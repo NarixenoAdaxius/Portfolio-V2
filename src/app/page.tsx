@@ -6,7 +6,7 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import {
   Download, Mail, MapPin, Phone,
   Briefcase, GraduationCap, Smile, Layers, Headphones, Users,
-  ChevronRight, ExternalLink,
+  ChevronRight, ExternalLink, Quote,
 } from "lucide-react";
 
 /* ── Skills data ── */
@@ -82,12 +82,12 @@ export default function Home() {
             {/* Left – text */}
             <div className="hero-text">
               <p style={{ fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--brand)", fontWeight: 700, marginBottom: "0.75rem" }}>
-                Full Stack Engineer · IT Consultant
+                Software Engineer &amp; IT Consultant
               </p>
               <h1 className="hero-name">Arione Dauis</h1>
               <p className="hero-typed">
                 I&apos;m a{" "}
-                <span className="hero-typed-highlight">Full Stack Software Engineer</span>
+                <span className="hero-typed-highlight">Software Engineer &amp; IT Consultant</span>
               </p>
               <p style={{ color: "rgba(255,255,255,0.60)", marginTop: "1rem", maxWidth: "480px", fontSize: "1rem", lineHeight: 1.65 }}>
                 Building scalable web apps, developer tooling, and AI-powered
@@ -116,7 +116,7 @@ export default function Home() {
             <h2>About</h2>
             <div className="section-heading-bar" />
             <p>
-              Versatile Full Stack Engineer &amp; IT Consultant with 3+ years of
+              Versatile Software Engineer &amp; IT Consultant with 3+ years of
               experience building production-grade web systems, developer tools, and
               AI-assisted workflows.
             </p>
@@ -131,7 +131,7 @@ export default function Home() {
             {/* Info */}
             <div>
               <p className="about-role">
-                Full Stack Software Engineer &amp; IT Consultant
+                Software Engineer &amp; IT Consultant
               </p>
               <p className="about-intro-italic">
                 I build web platforms and developer tooling that save teams time,
@@ -157,7 +157,7 @@ export default function Home() {
                 <div className="about-info-item">
                   <ChevronRight size={14} color="var(--brand)" style={{ flexShrink: 0 }} />
                   <span className="about-info-label">Phone:&nbsp;</span>
-                  <span className="about-info-value">+63 905 844 3808</span>
+                  <span className="about-info-value">+63 961 995 1286</span>
                 </div>
                 <div className="about-info-item">
                   <ChevronRight size={14} color="var(--brand)" style={{ flexShrink: 0 }} />
@@ -314,25 +314,11 @@ export default function Home() {
                   <div className="resume-node" />
                   <span className="resume-date">Sept 2025 – Mar 2026</span>
                   <div className="resume-title">Software Engineer</div>
-                  <div className="resume-org">American Sourcing Group (ASG Platform)</div>
+                  <div className="resume-org">American Sourcing Group (ASG Platform) — Remote</div>
                   <ul className="resume-points">
-                    <li>Automated staging pipeline, improving delivery speed by <strong>35%</strong></li>
-                    <li>Built AI-integrated VS Code extensions, boosting team productivity by <strong>~30%</strong></li>
-                    <li>Translated PRDs into working POCs across tight sprint cycles</li>
-                    <li>Built and evaluated AI-driven pipelines for rapid product iteration</li>
-                  </ul>
-                </div>
-
-                <div className="resume-item">
-                  <div className="resume-node" />
-                  <span className="resume-date">Jan 2024 – Dec 2024</span>
-                  <div className="resume-title">Full Stack Head Web Developer</div>
-                  <div className="resume-org">ALPHA — Alliance of Leading Programmers</div>
-                  <ul className="resume-points">
-                    <li>Led <strong>10-person engineering team</strong> end-to-end — architecture, sprints, release</li>
-                    <li>Delivered event ticketing, automated email, and admin platform from scratch</li>
-                    <li>MongoDB data model maintained accuracy under peak registration traffic</li>
-                    <li>Eliminated all third-party event tools by building proprietary systems</li>
+                    <li>Expanded automated test coverage for a live US SaaS system, reducing bug risk in production and tightening the feedback loop before each release.</li>
+                    <li>Built a staging pipeline automation system that eliminated repetitive manual steps and improved team delivery speed by <strong>35%</strong>.</li>
+                    <li>Operated consistently within a professional engineering workflow covering branching, versioning, and sprint commitments, helping the team deploy on schedule every cycle.</li>
                   </ul>
                 </div>
 
@@ -349,13 +335,25 @@ export default function Home() {
 
                 <div className="resume-item">
                   <div className="resume-node" />
+                  <span className="resume-date">Jan 2024 – Dec 2024</span>
+                  <div className="resume-title">Full Stack Head Web Developer</div>
+                  <div className="resume-org">ALPHA — Alliance of Leading Programmers</div>
+                  <ul className="resume-points">
+                    <li>Led a <strong>10-person engineering team</strong> in delivering a full event ticketing platform, owning both technical direction and team execution end-to-end.</li>
+                    <li>Architected a scalable data layer that maintained accuracy and reliability under production load as the platform grew.</li>
+                    <li>Built onboarding documentation and mentored developers within sprint cycles, reducing knowledge silos and enabling the team to deploy consistently without bottlenecks.</li>
+                  </ul>
+                </div>
+
+                <div className="resume-item">
+                  <div className="resume-node" />
                   <span className="resume-date">2021 – Present</span>
                   <div className="resume-title">Freelance IT Technician &amp; Web Consultant</div>
                   <div className="resume-org">Self-Employed</div>
                   <ul className="resume-points">
-                    <li>Optimised software and network setups for small businesses</li>
-                    <li>Built and deployed custom web projects from design to live</li>
-                    <li>Delivered Ubuntu Server infrastructure for retail POS systems</li>
+                    <li>Served as a trusted, repeat-hire technician for local and international clients, resolving hardware, software, and performance issues remotely and on-site with minimal client downtime.</li>
+                    <li>Extended device lifespans through targeted OS and performance optimization, saving clients the cost of premature hardware replacement.</li>
+                    <li>Delivered web projects independently from brief to launch, serving as a single point of accountability across design, development, QA, and cross-browser testing.</li>
                   </ul>
                 </div>
               </div>
@@ -396,27 +394,76 @@ export default function Home() {
                 <div className="portfolio-card-overlay">
                   <p className="portfolio-card-cat">{item.category}</p>
                   <p className="portfolio-card-title">{item.title}</p>
-                  <div className="portfolio-card-links">
-                    <a
-                      href={item.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="portfolio-card-link"
-                      aria-label="Source"
-                    >
-                      <GithubIcon size={16} />
-                    </a>
-                    <a
-                      href={item.link}
-                      className="portfolio-card-link"
-                      aria-label="Live link"
-                    >
-                      <ExternalLink size={16} />
-                    </a>
-                  </div>
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════
+            TESTIMONIALS
+        ════════════════════════════════════════ */}
+        <section id="testimonials" className="section section-alt">
+          <div className="section-heading">
+            <h2>Testimonials</h2>
+            <div className="section-heading-bar" />
+            <p>
+              Feedback from partners and client networks I have worked with on technical support, system configurations, and hardware maintenance.
+            </p>
+          </div>
+
+          <div className="testimonials-grid">
+            <div className="testimonial-item">
+              <div className="testimonial-content">
+                <Quote className="testimonial-quote-icon" size={24} />
+                <p>
+                  Following a security breach, Arione stepped in and gave me a clear, step-by-step recovery roadmap that immediately secured my system. His ongoing optimization work keeps my computer running faster than ever. Whenever I need advice on gadget security or troubleshooting, he is the first person I ask. He is approachable, clear, and extremely reliable.
+                </p>
+              </div>
+              <div className="testimonial-info">
+                <h4>sauceages</h4>
+                <span>Security &amp; Tech Advisory Client</span>
+              </div>
+            </div>
+
+            <div className="testimonial-item">
+              <div className="testimonial-content">
+                <Quote className="testimonial-quote-icon" size={24} />
+                <p>
+                  I had a critical OS transition and some compatibility conflicts. Mr. Dauis set up a clean install of Windows 10, configured all drivers, and restored every single bit of my data without a hitch. The execution met all my expectations. I will definitely look to him again for any system deployment or configuration work.
+                </p>
+              </div>
+              <div className="testimonial-info">
+                <h4>irey.v</h4>
+                <span>System Configuration &amp; Deployment Client</span>
+              </div>
+            </div>
+
+            <div className="testimonial-item">
+              <div className="testimonial-content">
+                <Quote className="testimonial-quote-icon" size={24} />
+                <p>
+                  My system was crashing constantly when running heavy apps. Arione connected remotely via AnyDesk, audited my privileges, and adjusted application modes to stabilize the setup. The desktop environment has been solid ever since. He works directly, stays calm, and resolves issues very smoothly. Highly recommended!
+                </p>
+              </div>
+              <div className="testimonial-info">
+                <h4>Scarlet Lucius</h4>
+                <span>Remote Technical Support Client</span>
+              </div>
+            </div>
+
+            <div className="testimonial-item">
+              <div className="testimonial-content">
+                <Quote className="testimonial-quote-icon" size={24} />
+                <p>
+                  My laptop&apos;s keyboard was completely unresponsive. Arione diagnosed and replaced it, and it has functioned flawlessly ever since. The repair was completed quickly and at a very reasonable cost. If you need efficient hardware support, he&apos;s the professional to call.
+                </p>
+              </div>
+              <div className="testimonial-info">
+                <h4>Denimon</h4>
+                <span>Hardware Repair &amp; Diagnostics Client</span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -428,7 +475,7 @@ export default function Home() {
             <h2>Contact</h2>
             <div className="section-heading-bar" />
             <p>
-              Whether you&apos;re a recruiter or CEO — if you want to build something
+              Whether you&apos;re a potential partner — if you want to build something
               great or just have a technical conversation, reach out.
             </p>
           </div>

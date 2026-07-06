@@ -1,19 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle2 } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    setTimeout(() => {
-      setStatus("success");
-      setForm({ name: "", email: "", subject: "", message: "" });
-    }, 1400);
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setStatus("success");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setErrorMsg(data.error || "An error occurred while sending the message.");
+        setStatus("error");
+      }
+    } catch (err) {
+      setErrorMsg("Failed to connect to the server. Please check your network.");
+      setStatus("error");
+    }
   };
 
   const set = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -27,6 +46,24 @@ export default function ContactForm() {
         <div className="form-success">
           <CheckCircle2 size={16} />
           Message sent successfully! I&apos;ll respond soon.
+        </div>
+      )}
+
+      {status === "error" && (
+        <div className="form-error" style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          padding: "0.75rem 1rem",
+          background: "#fef2f2",
+          border: "1px solid #fecaca",
+          borderRadius: "4px",
+          color: "#dc2626",
+          fontSize: "0.9rem",
+          marginBottom: "1rem",
+        }}>
+          <AlertCircle size={16} />
+          {errorMsg}
         </div>
       )}
 
