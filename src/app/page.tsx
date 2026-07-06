@@ -138,7 +138,7 @@ export default function Home() {
                 <span className="hero-typed-highlight">Software Engineer &amp; IT Consultant</span>
               </p>
               <p style={{ color: "rgba(255,255,255,0.60)", marginTop: "1rem", maxWidth: "480px", fontSize: "1rem", lineHeight: 1.65 }}>
-                Building scalable web apps, developer tooling, and AI-powered
+                Building scalable web apps, developer tools, and automated AI
                 workflows. Based in the Philippines — available for remote roles worldwide.
               </p>
               <div className="hero-cta-row">
@@ -165,8 +165,8 @@ export default function Home() {
             <div className="section-heading-bar" />
             <p>
               Versatile Software Engineer &amp; IT Consultant with 3+ years of
-              experience building production-grade web systems, developer tools, and
-              AI-assisted workflows.
+              experience building reliable web systems, developer tools, and
+              automated workflows.
             </p>
           </div>
 
@@ -182,8 +182,8 @@ export default function Home() {
                 Software Engineer &amp; IT Consultant
               </p>
               <p className="about-intro-italic">
-                I build web platforms and developer tooling that save teams time,
-                reduce errors, and ship faster.
+                I build web platforms and developer tools that save teams time,
+                reduce errors, and deploy faster.
               </p>
 
               <div className="about-info-grid">
@@ -223,12 +223,12 @@ export default function Home() {
 
               <p className="about-bio">
                 I hold a <strong>BS in Computer Science (Cum Laude)</strong> from STI
-                Colleges Ortigas-Cainta (July 2025), grounding my engineering in strong
-                CS fundamentals. I have led 10-person engineering squads, built
-                AI-integrated developer tooling that improved team productivity by
+                Colleges Ortigas-Cainta (July 2025), grounding my work in strong
+                CS fundamentals. I have led 10-person engineering teams, built
+                AI-integrated developer tools that improved team productivity by
                 ~30%, and automated staging pipelines that cut delivery time by 35%.
-                I am passionate about clean architecture, AI-assisted development, and
-                building systems that solve real operational problems.
+                I am passionate about clean code, AI-assisted development, and
+                building systems that solve real business problems.
               </p>
 
               <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -280,7 +280,7 @@ export default function Home() {
             <div className="stat-item">
               <div className="stat-icon"><Layers size={28} /></div>
               <div className="stat-number">10+</div>
-              <div className="stat-label"><strong>Projects Shipped</strong> end-to-end</div>
+              <div className="stat-label"><strong>Projects Deployed</strong> end-to-end</div>
             </div>
             <div className="stat-item">
               <div className="stat-icon"><Users size={28} /></div>
@@ -328,7 +328,7 @@ export default function Home() {
               Core Technical Focus &amp; Certifications
             </h3>
             <p style={{ fontSize: "0.88rem", color: "var(--text-muted)", marginBottom: "1.5rem" }}>
-              Key engineering paradigms and systems methodologies I actively deploy.
+              Key technologies and methods I use to build and optimize systems.
             </p>
             <div className="cert-grid">
               <div className="cert-card">
@@ -337,7 +337,7 @@ export default function Home() {
                 </div>
                 <h4 className="cert-title">Cloud Systems Engineering</h4>
                 <p className="cert-desc">
-                  Fluency in deploying resilient server setups, custom container instances (Docker), and automated staging environment lifecycles.
+                  Experience setting up cloud servers, containerizing apps with Docker, and building automated staging pipelines.
                 </p>
               </div>
 
@@ -347,7 +347,7 @@ export default function Home() {
                 </div>
                 <h4 className="cert-title">Infrastructure Hardening</h4>
                 <p className="cert-desc">
-                  Security configuration, system administration, local server restorations, and administrative access setups for enterprise workstations.
+                  System security, server maintenance, data restoration, and user access management for office systems.
                 </p>
               </div>
 
@@ -357,7 +357,7 @@ export default function Home() {
                 </div>
                 <h4 className="cert-title">Latin Honors Graduate</h4>
                 <p className="cert-desc">
-                  Awarded BS in Computer Science (Cum Laude) with specialization in software structures, data layouts, and algorithms.
+                  Graduated Cum Laude in Computer Science, specializing in software development, data structures, and algorithms.
                 </p>
               </div>
             </div>
@@ -468,7 +468,7 @@ export default function Home() {
             <div className="section-heading-bar" />
             <p>
               A selection of platforms, tools, and systems I have designed,
-              built, and shipped to production.
+              built, and deployed to production.
             </p>
           </div>
 

@@ -18,10 +18,10 @@ export default function LoadingScreen() {
 
     // Status text cycle
     const messages = [
-      "Configuring environment...",
-      "Resolving technical modules...",
-      "Compiling skills matrix...",
-      "Establishing connection...",
+      "Setting up...",
+      "Loading files...",
+      "Loading skills...",
+      "Connecting...",
       "Online"
     ];
 
