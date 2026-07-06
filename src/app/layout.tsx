@@ -40,13 +40,22 @@ export const metadata: Metadata = {
     description: "Let's Connect and Build your Ideas",
     url: "https://arione.dev",
     siteName: "Arione Dauis Portfolio",
+    images: [
+      {
+        url: "/images/og/home.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Arione Dauis - Let's Connect and Build your Ideas",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Arione Dauis | Software Engineer & IT Consultant",
     description: "Let's Connect and Build your Ideas",
+    images: ["/images/og/home.jpg"],
   },
   robots: {
     index: true,
