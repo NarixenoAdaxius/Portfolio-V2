@@ -9,7 +9,7 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import {
   Download, Mail, MapPin, Phone,
   Briefcase, GraduationCap, Smile, Layers, Headphones, Users,
-  ChevronRight, ExternalLink, Quote, Cloud, ShieldCheck, Award,
+  ChevronRight, ExternalLink, Quote, Cloud, ShieldCheck, Award, X,
 } from "lucide-react";
 
 /* ── Skills data ── */
@@ -31,47 +31,49 @@ const portfolioItems = [
     category: "VS Code Extension",
     img: "/images/projects/bug-hunter/screenshot-dashboard.png",
     github: "https://github.com/NarixenoAdaxius",
-    link: "#",
+    desc: "A custom VS Code extension designed to gamify static code analysis, using local parsing engines to track achievements and coding metrics directly inside the IDE.",
   },
   {
     title: "Palette Mail",
     category: "Full-Stack SaaS",
     img: "/images/projects/palatte-mail/home.png",
     github: "https://github.com/NarixenoAdaxius",
-    link: "#",
+    desc: "A full-featured responsive email visual builder and automated distribution service integrated with secure multi-factor user authentication (2FA) and MongoDB persistence.",
   },
   {
     title: "ALPHA Event Dashboard",
     category: "Event Management",
     img: "/images/projects/AlphaEventDashboard/Dashboard.png",
+    video: "/videos/Event Attendance QR Scanner Video.mp4",
     github: "https://github.com/NarixenoAdaxius",
-    link: "#",
+    desc: "A unified administration dashboard and check-in system. Implements a responsive web-based camera QR code reader for real-time ticket scanner verification at registration.",
   },
   {
     title: "ALPHA Landing Site",
     category: "Landing Page",
     img: "/images/projects/AlphaWebsite/Landing01.png",
     github: "https://github.com/NarixenoAdaxius",
-    link: "#",
+    desc: "A high-performance student organization landing site built with clean modern styling, mobile-responsive grid frameworks, and instant form submission handling.",
   },
   {
     title: "DPC Point of Sale",
     category: "IT Consulting",
     img: "/images/projects/DPCPOS/Dashboard.png",
     github: "https://github.com/NarixenoAdaxius",
-    link: "#",
+    desc: "A local sales tracking and POS tool configured and deployed for Dream PC Builds. Built to run on secure intranet server setups with local backups.",
   },
   {
     title: "Palette Mail – Composer",
     category: "UI / UX",
     img: "/images/projects/palatte-mail/EmailComposer.png",
     github: "https://github.com/NarixenoAdaxius",
-    link: "#",
+    desc: "An advanced drag-and-drop workspace layout built with Next.js and custom CSS grid layers, designed to let users compile custom email designs seamlessly.",
   },
 ];
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -332,32 +334,62 @@ export default function Home() {
             </p>
             <div className="cert-grid">
               <div className="cert-card">
-                <div className="cert-icon-wrapper">
-                  <Cloud size={20} />
+                <div style={{ position: "relative", width: "100%", height: "130px", marginBottom: "1rem", overflow: "hidden", borderRadius: "6px", border: "1px solid var(--border)", background: "var(--bg-alt)" }}>
+                  <Image
+                    src="/images/certifications/Backend Head Certification.png"
+                    alt="Backend Head Certification"
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
                 </div>
-                <h4 className="cert-title">Cloud Systems Engineering</h4>
+                <h4 className="cert-title">Backend Head Certification</h4>
                 <p className="cert-desc">
-                  Experience setting up cloud servers, containerizing apps with Docker, and building automated staging pipelines.
+                  Leadership validation as Full Stack Head Web Developer for the ALPHA organization, managing database schemas and event architectures.
                 </p>
               </div>
 
               <div className="cert-card">
-                <div className="cert-icon-wrapper">
-                  <ShieldCheck size={20} />
+                <div style={{ position: "relative", width: "100%", height: "130px", marginBottom: "1rem", overflow: "hidden", borderRadius: "6px", border: "1px solid var(--border)", background: "var(--bg-alt)" }}>
+                  <Image
+                    src="/images/certifications/Cybersecurity for Everyone DICT.png"
+                    alt="Cybersecurity for Everyone"
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
                 </div>
-                <h4 className="cert-title">Infrastructure Hardening</h4>
+                <h4 className="cert-title">Cybersecurity for Everyone</h4>
                 <p className="cert-desc">
-                  System security, server maintenance, data restoration, and user access management for office systems.
+                  DICT certified credential validating foundational network defense, system configuration security, and endpoint protection.
                 </p>
               </div>
 
               <div className="cert-card">
-                <div className="cert-icon-wrapper">
-                  <Award size={20} />
+                <div style={{ position: "relative", width: "100%", height: "130px", marginBottom: "1rem", overflow: "hidden", borderRadius: "6px", border: "1px solid var(--border)", background: "var(--bg-alt)" }}>
+                  <Image
+                    src="/images/certifications/Cyber Awareness Challenge 2024.png"
+                    alt="Cyber Awareness Challenge"
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
                 </div>
-                <h4 className="cert-title">Latin Honors Graduate</h4>
+                <h4 className="cert-title">Cyber Awareness Challenge</h4>
                 <p className="cert-desc">
-                  Graduated Cum Laude in Computer Science, specializing in software development, data structures, and algorithms.
+                  Validation covering system access management, operational security protocols, and secure administrative controls.
+                </p>
+              </div>
+
+              <div className="cert-card">
+                <div style={{ position: "relative", width: "100%", height: "130px", marginBottom: "1rem", overflow: "hidden", borderRadius: "6px", border: "1px solid var(--border)", background: "var(--bg-alt)" }}>
+                  <Image
+                    src="/images/certifications/Packet hacks Finalist Certificate of Participation.png"
+                    alt="Packet Hacks Finalist"
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+                <h4 className="cert-title">Packet Hacks Finalist</h4>
+                <p className="cert-desc">
+                  Finalist certificate in competitive networking and systems optimization, focusing on system administration under tight timeframes.
                 </p>
               </div>
             </div>
@@ -486,7 +518,12 @@ export default function Home() {
 
           <div className="portfolio-grid">
             {filteredItems.map((item, i) => (
-              <div key={i} className="portfolio-card">
+              <div
+                key={i}
+                className="portfolio-card"
+                onClick={() => setSelectedProject(item)}
+                style={{ cursor: "pointer" }}
+              >
                 <Image
                   src={item.img}
                   alt={item.title}
@@ -497,6 +534,9 @@ export default function Home() {
                 <div className="portfolio-card-overlay">
                   <p className="portfolio-card-cat">{item.category}</p>
                   <p className="portfolio-card-title">{item.title}</p>
+                  <span style={{ fontSize: "0.72rem", color: "var(--brand)", marginTop: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    Click to view details
+                  </span>
                 </div>
               </div>
             ))}
@@ -649,6 +689,59 @@ export default function Home() {
           &copy; {new Date().getFullYear()}{" "}
           <span>Arione John C. Dauis</span> · Built with Next.js
         </footer>
+
+        {/* Project Modal Lightbox */}
+        {selectedProject && (
+          <div className="project-modal-overlay" onClick={() => setSelectedProject(null)}>
+            <div className="project-modal-card" onClick={(e) => e.stopPropagation()}>
+              <button className="project-modal-close" onClick={() => setSelectedProject(null)} aria-label="Close details">
+                <X size={18} />
+              </button>
+              <div className="project-modal-body">
+                {/* Media Showcase */}
+                <div className="project-modal-media">
+                  {selectedProject.video ? (
+                    <video
+                      src={selectedProject.video}
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="project-modal-video"
+                    />
+                  ) : (
+                    <div className="project-modal-img-container">
+                      <Image
+                        src={selectedProject.img}
+                        alt={selectedProject.title}
+                        fill
+                        style={{ objectFit: "contain" }}
+                      />
+                    </div>
+                  )}
+                </div>
+                {/* Info details */}
+                <div className="project-modal-info">
+                  <span className="project-modal-cat">{selectedProject.category}</span>
+                  <h3 className="project-modal-title">{selectedProject.title}</h3>
+                  <p className="project-modal-desc">{selectedProject.desc}</p>
+                  {selectedProject.github && (
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{ alignSelf: "flex-start", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+                    >
+                      <GithubIcon size={14} /> View Repository
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
       </main>
     </div>
