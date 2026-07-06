@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import ContactForm from "@/components/ContactForm";
@@ -6,7 +9,7 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import {
   Download, Mail, MapPin, Phone,
   Briefcase, GraduationCap, Smile, Layers, Headphones, Users,
-  ChevronRight, ExternalLink, Quote,
+  ChevronRight, ExternalLink, Quote, Cloud, ShieldCheck, Award,
 } from "lucide-react";
 
 /* ── Skills data ── */
@@ -68,6 +71,51 @@ const portfolioItems = [
 ];
 
 export default function Home() {
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  useEffect(() => {
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
+  const filteredItems = portfolioItems.filter((item) => {
+    if (activeFilter === "All") return true;
+    if (activeFilter === "Extensions") return item.category.toLowerCase().includes("extension");
+    if (activeFilter === "SaaS") {
+      return (
+        item.category.toLowerCase().includes("saas") ||
+        item.category.toLowerCase().includes("event") ||
+        item.category.toLowerCase().includes("ui")
+      );
+    }
+    if (activeFilter === "Systems") {
+      return (
+        item.category.toLowerCase().includes("system") ||
+        item.category.toLowerCase().includes("consulting") ||
+        item.category.toLowerCase().includes("landing")
+      );
+    }
+    return true;
+  });
+
   return (
     <div className="layout-root">
       <Sidebar />
@@ -111,7 +159,7 @@ export default function Home() {
         {/* ════════════════════════════════════════
             ABOUT
         ════════════════════════════════════════ */}
-        <section id="about" className="section">
+        <section id="about" className="section reveal">
           <div className="section-heading">
             <h2>About</h2>
             <div className="section-heading-bar" />
@@ -210,6 +258,15 @@ export default function Home() {
                   <LinkedinIcon size={14} /> LinkedIn
                 </a>
               </div>
+
+              {/* Philosophy Banner */}
+              <div className="philosophy-banner">
+                <Quote className="testimonial-quote-icon" size={24} style={{ color: "var(--brand)" }} />
+                <p className="philosophy-quote">
+                  &ldquo;Blending software engineering precision with responsive IT advisory to build scalable, secure, and production-grade client platforms.&rdquo;
+                </p>
+                <div className="philosophy-author">Arione Dauis — Software Engineer &amp; IT Consultant</div>
+              </div>
             </div>
           </div>
 
@@ -241,7 +298,7 @@ export default function Home() {
         {/* ════════════════════════════════════════
             SKILLS
         ════════════════════════════════════════ */}
-        <section id="skills" className="section section-alt">
+        <section id="skills" className="section section-alt reveal">
           <div className="section-heading">
             <h2>Skills</h2>
             <div className="section-heading-bar" />
@@ -264,12 +321,53 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          {/* Certifications Showcase */}
+          <div style={{ marginTop: "3.5rem", borderTop: "1px solid var(--border)", paddingTop: "2.5rem" }}>
+            <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--text-dark)", marginBottom: "0.5rem" }}>
+              Core Technical Focus &amp; Certifications
+            </h3>
+            <p style={{ fontSize: "0.88rem", color: "var(--text-muted)", marginBottom: "1.5rem" }}>
+              Key engineering paradigms and systems methodologies I actively deploy.
+            </p>
+            <div className="cert-grid">
+              <div className="cert-card">
+                <div className="cert-icon-wrapper">
+                  <Cloud size={20} />
+                </div>
+                <h4 className="cert-title">Cloud Systems Engineering</h4>
+                <p className="cert-desc">
+                  Fluency in deploying resilient server setups, custom container instances (Docker), and automated staging environment lifecycles.
+                </p>
+              </div>
+
+              <div className="cert-card">
+                <div className="cert-icon-wrapper">
+                  <ShieldCheck size={20} />
+                </div>
+                <h4 className="cert-title">Infrastructure Hardening</h4>
+                <p className="cert-desc">
+                  Security configuration, system administration, local server restorations, and administrative access setups for enterprise workstations.
+                </p>
+              </div>
+
+              <div className="cert-card">
+                <div className="cert-icon-wrapper">
+                  <Award size={20} />
+                </div>
+                <h4 className="cert-title">Latin Honors Graduate</h4>
+                <p className="cert-desc">
+                  Awarded BS in Computer Science (Cum Laude) with specialization in software structures, data layouts, and algorithms.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* ════════════════════════════════════════
             RESUME
         ════════════════════════════════════════ */}
-        <section id="resume" className="section">
+        <section id="resume" className="section reveal">
           <div className="section-heading">
             <h2>Resume</h2>
             <div className="section-heading-bar" />
@@ -364,7 +462,7 @@ export default function Home() {
         {/* ════════════════════════════════════════
             PORTFOLIO
         ════════════════════════════════════════ */}
-        <section id="portfolio" className="section section-alt">
+        <section id="portfolio" className="section section-alt reveal">
           <div className="section-heading">
             <h2>Portfolio</h2>
             <div className="section-heading-bar" />
@@ -375,14 +473,19 @@ export default function Home() {
           </div>
 
           <div className="portfolio-filters">
-            <button className="filter-btn active">All</button>
-            <button className="filter-btn">Extensions</button>
-            <button className="filter-btn">SaaS</button>
-            <button className="filter-btn">Systems</button>
+            {["All", "Extensions", "SaaS", "Systems"].map((cat) => (
+              <button
+                key={cat}
+                className={`filter-btn${activeFilter === cat ? " active" : ""}`}
+                onClick={() => setActiveFilter(cat)}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
 
           <div className="portfolio-grid">
-            {portfolioItems.map((item, i) => (
+            {filteredItems.map((item, i) => (
               <div key={i} className="portfolio-card">
                 <Image
                   src={item.img}
@@ -403,7 +506,7 @@ export default function Home() {
         {/* ════════════════════════════════════════
             TESTIMONIALS
         ════════════════════════════════════════ */}
-        <section id="testimonials" className="section section-alt">
+        <section id="testimonials" className="section section-alt reveal">
           <div className="section-heading">
             <h2>Testimonials</h2>
             <div className="section-heading-bar" />
@@ -470,7 +573,7 @@ export default function Home() {
         {/* ════════════════════════════════════════
             CONTACT
         ════════════════════════════════════════ */}
-        <section id="contact" className="section">
+        <section id="contact" className="section reveal">
           <div className="section-heading">
             <h2>Contact</h2>
             <div className="section-heading-bar" />
