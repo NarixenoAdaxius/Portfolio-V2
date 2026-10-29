@@ -1,77 +1,70 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
+/**
+ * Typographic boot screen. Shown once per session; when it finishes it sets
+ * `data-loaded` on <html>, which releases the hero's staggered entrance.
+ */
 export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(true);
-  const [statusText, setStatusText] = useState("Initializing portfolio...");
+  const [statusText, setStatusText] = useState("Initializing");
 
   useEffect(() => {
-    // Session check to show only once per session
-    const hasShown = sessionStorage.getItem("portfolio-loader-shown");
-    if (hasShown) {
-      setLoading(false);
-      setVisible(false);
+    const root = document.documentElement;
+    const markLoaded = () => root.setAttribute("data-loaded", "true");
+
+    // Shown once per session. On repeat visits the inline script in layout.tsx
+    // sets `data-skip-loader` before first paint, and CSS hides this overlay.
+    if (root.hasAttribute("data-skip-loader")) {
+      markLoaded();
       return;
     }
 
     // Status text cycle
-    const messages = [
-      "Setting up...",
-      "Loading files...",
-      "Loading skills...",
-      "Connecting...",
-      "Online"
-    ];
+    const messages = ["Compiling", "Linking assets", "Running tests", "Deploying", "Online"];
 
     let currentIdx = 0;
     const interval = setInterval(() => {
-      if (currentIdx < messages.length - 1) {
+      if (currentIdx < messages.length) {
         setStatusText(messages[currentIdx]);
         currentIdx++;
       }
-    }, 280);
+    }, 240);
 
-    // Fade out after 1.6s
+    // Fade out after ~1.4s
+    let unmount: ReturnType<typeof setTimeout>;
     const timer = setTimeout(() => {
       setLoading(false);
+      markLoaded();
       sessionStorage.setItem("portfolio-loader-shown", "true");
       // Unmount from DOM after fade-out transition finishes
-      setTimeout(() => {
-        setVisible(false);
-      }, 500);
-    }, 1700);
+      unmount = setTimeout(() => setVisible(false), 700);
+    }, 1400);
 
     return () => {
       clearInterval(interval);
       clearTimeout(timer);
+      clearTimeout(unmount);
     };
   }, []);
 
   if (!visible) return null;
 
   return (
-    <div className={`loader-wrapper${!loading ? " loaded" : ""}`}>
-      <div className="loader-content">
-        <div className="loader-spinner-container">
-          <div className="loader-logo-ring" />
-          <div className="loader-monogram" style={{ position: "absolute", width: "52px", height: "52px", overflow: "hidden", borderRadius: "50%" }}>
-            <Image
-              src="/images/logo.png"
-              alt="Logo"
-              fill
-              sizes="52px"
-              style={{ objectFit: "cover" }}
-              priority
-            />
-          </div>
+    <div className={`loader${!loading ? " is-done" : ""}`} aria-hidden="true">
+      <div className="loader-inner">
+        <div className="loader-mark">
+          AD<span>/</span>
         </div>
-        <div className="loader-bar-track">
-          <div className="loader-bar-fill" />
+        <div className="loader-track">
+          <div className="loader-fill" />
         </div>
-        <p className="loader-status">{statusText}</p>
+        <div className="loader-meta">
+          <span>{statusText}</span>
+          <span>arione.dev</span>
+        </div>
       </div>
     </div>
   );

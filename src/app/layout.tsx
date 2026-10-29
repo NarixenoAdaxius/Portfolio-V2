@@ -1,43 +1,61 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Instrument_Serif, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import LoadingScreen from "@/components/LoadingScreen";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/* Display — editorial serif with a beautiful italic */
+const display = Instrument_Serif({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+/* Body — characterful grotesk */
+const sans = Bricolage_Grotesque({
+  variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+/* Annotations — engineering mono */
+const mono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
+
+const title = "Arione Dauis | Full Stack Web Developer";
+const description =
+  "Full stack web developer shipping production apps with Next.js, React, Node.js & TypeScript. Let's connect and build your ideas.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://arione.dev"),
   title: {
-    default: "Arione Dauis | Software Engineer & IT Consultant",
+    default: title,
     template: "%s | Arione Dauis",
   },
-  description: "Let's Connect and Build your Ideas",
+  description,
   keywords: [
     "Arione Dauis",
     "Arione John Dauis",
+    "Full Stack Web Developer",
     "Software Engineer",
-    "IT Consultant",
-    "Full Stack Developer",
     "Next.js Developer",
+    "React Developer",
     "Node.js Developer",
+    "TypeScript",
     "Philippines Developer",
-    "System Security",
-    "Cloud Systems Engineering",
+    "Remote Developer",
+    "Docker",
+    "Playwright",
   ],
   authors: [{ name: "Arione Dauis", url: "https://arione.dev" }],
   creator: "Arione Dauis",
   openGraph: {
-    title: "Arione Dauis | Software Engineer & IT Consultant",
-    description: "Let's Connect and Build your Ideas",
+    title,
+    description,
     url: "https://arione.dev",
     siteName: "Arione Dauis Portfolio",
     images: [
@@ -53,8 +71,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arione Dauis | Software Engineer & IT Consultant",
-    description: "Let's Connect and Build your Ideas",
+    title,
+    description,
     images: ["/images/og/home.jpg"],
   },
   robots: {
@@ -73,7 +91,11 @@ export const metadata: Metadata = {
   },
 };
 
-import LoadingScreen from "@/components/LoadingScreen";
+const skipLoaderScript = `try{if(sessionStorage.getItem("portfolio-loader-shown")||matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.setAttribute("data-skip-loader","")}}catch(e){}`;
+
+export const viewport: Viewport = {
+  themeColor: "#0d0c0a",
+};
 
 export default function RootLayout({
   children,
@@ -81,8 +103,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${display.variable} ${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
+        {/* Runs before first paint: skip the boot screen on repeat visits / reduced motion */}
+        <script dangerouslySetInnerHTML={{ __html: skipLoaderScript }} />
         <LoadingScreen />
         {children}
       </body>

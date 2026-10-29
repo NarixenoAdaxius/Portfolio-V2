@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -29,7 +29,7 @@ export default function ContactForm() {
         setErrorMsg(data.error || "An error occurred while sending the message.");
         setStatus("error");
       }
-    } catch (err) {
+    } catch {
       setErrorMsg("Failed to connect to the server. Please check your network.");
       setStatus("error");
     }
@@ -38,30 +38,24 @@ export default function ContactForm() {
   const set = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm(prev => ({ ...prev, [field]: e.target.value }));
 
+  const busy = status === "sending";
+
   return (
-    <div className="contact-form-box">
-      <h3>Send Me a Message</h3>
+    <div className="form-box">
+      <div className="form-head">
+        <span className="mono-tag">Transmission</span>
+        <span className="mono-note">Usually replies within 24h</span>
+      </div>
 
       {status === "success" && (
-        <div className="form-success">
+        <div className="form-flash is-ok" role="status">
           <CheckCircle2 size={16} />
           Message sent successfully! I&apos;ll respond soon.
         </div>
       )}
 
       {status === "error" && (
-        <div className="form-error" style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "0.5rem",
-          padding: "0.75rem 1rem",
-          background: "#fef2f2",
-          border: "1px solid #fecaca",
-          borderRadius: "4px",
-          color: "#dc2626",
-          fontSize: "0.9rem",
-          marginBottom: "1rem",
-        }}>
+        <div className="form-flash is-err" role="alert">
           <AlertCircle size={16} />
           {errorMsg}
         </div>
@@ -69,39 +63,34 @@ export default function ContactForm() {
 
       <form onSubmit={handleSubmit}>
         <div className="form-row">
-          <div className="form-group">
-            <label className="form-label" htmlFor="cf-name">Your Name</label>
-            <input className="form-input" id="cf-name" type="text"
-              value={form.name} onChange={set("name")} required
-              disabled={status === "sending"} placeholder="Jane Smith" />
+          <div className="field">
+            <input className="field-input" id="cf-name" type="text" placeholder=" "
+              value={form.name} onChange={set("name")} required disabled={busy} autoComplete="name" />
+            <label className="field-label" htmlFor="cf-name">Your name</label>
           </div>
-          <div className="form-group">
-            <label className="form-label" htmlFor="cf-email">Email Address</label>
-            <input className="form-input" id="cf-email" type="email"
-              value={form.email} onChange={set("email")} required
-              disabled={status === "sending"} placeholder="jane@company.com" />
+          <div className="field">
+            <input className="field-input" id="cf-email" type="email" placeholder=" "
+              value={form.email} onChange={set("email")} required disabled={busy} autoComplete="email" />
+            <label className="field-label" htmlFor="cf-email">Email address</label>
           </div>
         </div>
 
-        <div className="form-group">
-          <label className="form-label" htmlFor="cf-subject">Subject</label>
-          <input className="form-input" id="cf-subject" type="text"
-            value={form.subject} onChange={set("subject")} required
-            disabled={status === "sending"} placeholder="Hiring enquiry / Project discussion" />
+        <div className="field">
+          <input className="field-input" id="cf-subject" type="text" placeholder=" "
+            value={form.subject} onChange={set("subject")} required disabled={busy} />
+          <label className="field-label" htmlFor="cf-subject">Subject — hiring, project, collaboration</label>
         </div>
 
-        <div className="form-group">
-          <label className="form-label" htmlFor="cf-message">Message</label>
-          <textarea className="form-textarea" id="cf-message"
-            value={form.message} onChange={set("message")} required
-            disabled={status === "sending"}
-            placeholder="Hi Arione, I came across your portfolio and would like to discuss..." />
+        <div className="field">
+          <textarea className="field-input field-textarea" id="cf-message" placeholder=" "
+            value={form.message} onChange={set("message")} required disabled={busy} />
+          <label className="field-label" htmlFor="cf-message">Tell me about the idea…</label>
         </div>
 
-        <button type="submit" className="form-submit"
-          disabled={status === "sending" || status === "success"}>
-          <Send size={15} />
-          {status === "sending" ? "Sending…" : "Send Message"}
+        <button type="submit" className="btn btn-signal form-submit"
+          disabled={busy || status === "success"}>
+          {busy ? "Sending…" : status === "success" ? "Sent" : "Send message"}
+          <ArrowRight size={16} />
         </button>
       </form>
     </div>
