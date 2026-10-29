@@ -23,7 +23,7 @@ export const profile = {
 export const heroStats = [
   { value: "10", unit: "devs", label: "Led on a production ticketing platform" },
   { value: "35", unit: "%", label: "Faster delivery via staging automation" },
-  { value: "5+", unit: "yrs", label: "Freelancing for clients since 2021" },
+  { value: "3+", unit: "yrs", label: "Freelancing for clients since 2023" },
   { value: "BS", unit: "CS", label: "Computer Science, Cum Laude" },
 ];
 
@@ -39,7 +39,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    period: "2021 — Present",
+    period: "2023 — Present",
     role: "Freelance Web Developer & IT Consultant",
     org: "Self-Employed",
     place: "Local & International",

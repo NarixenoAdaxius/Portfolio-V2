@@ -173,7 +173,7 @@ export default function Home() {
                 <p className="about-text">
                   A Computer Science graduate (Cum Laude) from STI Colleges Ortigas-Cainta, I&apos;m
                   comfortable across frontend, REST APIs, databases, automated testing, and
-                  Linux/Docker deployments — and since 2021 I&apos;ve been the single point of
+                  Linux/Docker deployments — and since 2023 I&apos;ve been the single point of
                   accountability for freelance clients from brief to launch.
                 </p>
 
